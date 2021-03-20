@@ -1,6 +1,5 @@
 import Card from "./Card";
 
-
 function Column(props) {
 
     return (
@@ -8,10 +7,13 @@ function Column(props) {
 
             <h3>{props.status.title}</h3>
             {props.card.filter(el => props.status.status === el.status)
-                .map(el => <Card card={el}/>)}
-
+                .map(el => <Card card={el}
+                                 key={el._id}
+                                 nextStatus={props.nextStatus}
+                                 columns={props.columns}
+                                 priority={props.property}
+                />)}
         </div>
-
     );
 };
 

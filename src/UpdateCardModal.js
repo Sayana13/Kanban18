@@ -14,16 +14,23 @@ const UpdateCardModal = (props) => {
         <div>
             <Button color="danger" onClick={toggle}>Update</Button>
             <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle} charCode="Y">Update card</ModalHeader>
+                <ModalHeader toggle={toggle} charCode="X">Update card</ModalHeader>
                 <ModalBody>
                     <Input placeholder='Card name' value={newName}
-                           onChange={(e)=>setNewName(e.target.value)}/>
+                           onChange={(e) => setNewName(e.target.value)}
+                    /> <br/>
                     <Input placeholder='Card description' value={newDescription}
-                    onChange={(e)=>}/>
-                    <select className="form-select" aria-label="Default select example">
+                           onChange={(e) => setNewDescription(e.target.value)}/> <br/>
+                    <select className="form-select"
+                            aria-label="Default select example"
+                            value={newStatus}
+                            onChange={(e) => setNewStatus(e.target.value)}>
                         {props.columns.map(el => <option>{el}</option>)}
-                    </select> <br/>
-                    <select className="form-select" aria-label="Default select example">
+                    </select><br/>
+                    <select className="form-select"
+                            aria-label="Default select example"
+                            value={newPriority}
+                            onChange={(e) => setNewPriority(e.target.value)}>
                         {props.priority.map(el => <option>{el}</option>)}
                     </select>
                 </ModalBody>
