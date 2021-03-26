@@ -1,17 +1,18 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import axios from "axios";
 import './App.css';
-import {useState, useEffect} from "react";
-import Column from "./Column";
+import {
+    BrowserRouter as Router,
+    BrowserRouter,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import List from "./List";
+import CreateTask from "./CreateTask";
+import axios from "axios";
+import {useState} from "react";
 
 function App() {
-
-    const [statuses, setStatuses] = useState([]);
     const [cards, setCards] = useState([]);
-    const columns = statuses.map((el) => el.status);
-    const priority = [1, 2, 3, 4, 5];
-
-    console.log(statuses)
 
     const getCards = () => {
         axios.get('http://nazarov-kanban-server.herokuapp.com/card')
@@ -21,50 +22,35 @@ function App() {
             .catch((error) => {
                 console.log(error);
             })
-    }
-
-    useEffect(() => {
-        axios.get('http://nazarov-kanban-server.herokuapp.com/column')
-            .then((res) => {
-                setStatuses(res.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }, []);
-
-    useEffect(() => {
-        getCards();
-    }, []);
-
-    const nextStatus = (card, direction) => {
-        const corrector = direction === "right" ? +1 : -1;
-        const currentStatus = card.status;
-        const newStatus = columns[columns.indexOf(currentStatus) + corrector];
-
-        axios.patch(`http://nazarov-kanban-server.herokuapp.com/card/${card._id}`, {status: newStatus})
-            .then((res) => {
-                getCards();
-            })
-            .catch((error) => {
-                console.log(error);
-            })
     };
 
     return (
-        <div className="container">
-            <h1>Kanban</h1>
-            <div className="row align-items-start">
-                {statuses.map(el =>
-                    <Column key={el._id}
-                            status={el}
-                            cards={cards}
-                            nextStatus={nextStatus}
-                            columns={columns}
-                            priority={priority}
-                    />)}
-            </div>
-        </div>
+        <BrowserRouter>
+            <Router>
+                <nav className="navbar navbar-expand-sm navbar-light bg-light">
+                    <div className="container-fluid">
+                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li className="nav-item">
+                                    <Link to="/">List</Link>
+                                </li><span> </span>
+                                <li className="nav-item">
+                                    <Link to="/create">Create</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <Switch>
+                    <Route path="/create">
+                        <CreateTask getCards={getCards}/>
+                    </Route>
+                    <Route path="/">
+                        <List getCards={getCards} cards={cards} setCards={setCards}/>
+                    </Route>
+                </Switch>
+            </Router>
+        </BrowserRouter>
     );
 }
 

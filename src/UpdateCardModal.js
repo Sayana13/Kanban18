@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Input} from 'reactstrap';
+import { v4 as uuidv4 } from 'uuid';
 
 const UpdateCardModal = (props) => {
     const [modal, setModal] = useState(false);
@@ -10,37 +11,44 @@ const UpdateCardModal = (props) => {
 
     const toggle = () => setModal(!modal);
 
+    const saveButtonHandler = () => {
+        const newCard = {...props.card, name: newName, description: newDescription, status: newStatus, priority: newPriority}
+        props.editTask(newCard);
+        setModal(!modal);
+        console.log(newCard)
+    };
+
     return (
         <div>
-            <Button color="danger" onClick={toggle}>Update</Button>
+            <Button color="btn btn-outline-primary" onClick={toggle}>Update</Button>
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle} charCode="X">Update card</ModalHeader>
                 <ModalBody>
-                    <Input placeholder='Card name' value={newName}
-                           onChange={(e) => setNewName(e.target.value)}
-                    /> <br/>
-                    <Input placeholder='Card description' value={newDescription}
-                           onChange={(e) => setNewDescription(e.target.value)}/> <br/>
+                    <Input placeholder="card name" value={newName}
+                           onChange={(e) => setNewName(e.target.value)}/><br/>
+                    <Input placeholder="card description"
+                           value={newDescription}
+                           onChange={(e) => setNewDescription(e.target.value)}/><br/>
                     <select className="form-select"
                             aria-label="Default select example"
                             value={newStatus}
                             onChange={(e) => setNewStatus(e.target.value)}>
-                        {props.columns.map(el => <option>{el}</option>)}
+                        {props.columns.map(el => <option key={el._id}>{el}</option>)}
                     </select><br/>
                     <select className="form-select"
                             aria-label="Default select example"
                             value={newPriority}
                             onChange={(e) => setNewPriority(e.target.value)}>
-                        {props.priority.map(el => <option>{el}</option>)}
+                        {props.priority.map(el => <option key={uuidv4()}>{el}</option>)}
                     </select>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={toggle}>Save</Button>{' '}
+                    <Button color="primary" onClick={saveButtonHandler}>Save</Button>{' '}
                     <Button color="secondary" onClick={toggle}>Cancel</Button>
                 </ModalFooter>
             </Modal>
         </div>
     );
-}
+};
 
 export default UpdateCardModal;
