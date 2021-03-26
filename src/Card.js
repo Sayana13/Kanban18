@@ -19,8 +19,17 @@ function Card(props) {
                         disabled={props.cards.status === props.columns[props.columns.length - 1]}
                         onClick={() => props.nextStatus(props.cards, 'right')}>→
                 </button>
-                <button type="button" className="btn btn-outline-primary">↑</button>
-                <button type="button" className="btn btn-outline-primary">↓</button>
+
+                <button type="button" className="btn btn-outline-primary"
+                        disabled={props.cards.priority === props.priority[props.priority.length -1]}
+                        onClick={() => props.changePriority(props.cards_id, props.cards.priority, +1 )}>
+                    ↑
+                </button>
+                <button type="button" className="btn btn-outline-primary" type="button" className="btn btn-outline-primary"
+                        disabled={props.cards.priority === props.priority[0]}
+                        onClick={() => props.changePriority(props.cards_id, props.cards.priority, +1 )}>
+                    ↓
+                </button>
                 <UpdateCardModal
                     columns={props.columns}
                     priority={props.priority}

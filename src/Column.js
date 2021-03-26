@@ -6,6 +6,7 @@ function Column(props) {
             <h3>{props.status.title}</h3>
             {props.cards
                 .filter(el => props.status.status === el.status)
+                .sort((a, b) => b.priority - a.priority)
                 .map(el => <Card
                     cards={el}
                     key={el._id}
