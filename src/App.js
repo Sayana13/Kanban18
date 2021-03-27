@@ -27,20 +27,9 @@ function App() {
     return (
         <BrowserRouter>
             <Router>
-                <nav className="navbar navbar-expand-sm navbar-light bg-light">
-                    <div className="container-fluid">
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li className="nav-item">
-                                    <Link to="/">List</Link>
-                                </li><span> </span>
-                                <li className="nav-item">
-                                    <Link to="/create">Create</Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+                <Link to="/">Planner</Link>{' '}
+                <Link to="/create">New Task</Link>
+
                 <Switch>
                     <Route path="/create">
                         <CreateTask getCards={getCards}/>

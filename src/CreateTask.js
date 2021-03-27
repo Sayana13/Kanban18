@@ -29,20 +29,20 @@ function CreateTask(props) {
         <div>
             <h2>Create</h2>
             <form >
-                <div className="row mb-3">
-                    <label htmlFor="inputEmail3" className="col-sm-2 col-form-label"><h5>Name</h5></label>
+                <div className="input-group input-group-sm mb-3">
+                    <label htmlFor="inputEmail3" className="input-group-text" id="inputGroup-sizing-sm"><h5>Name</h5></label>
                     <div className="col-sm-10">
-                        <input name="name" className="form-control" id="inputEmail3" onChange={(e) => setTaskName(e.target.value)} placeholder="Add name"/>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" onChange={(e) => setTaskName(e.target.value)} placeholder="Add name"/>
                     </div>
                 </div>
-                <div className="row mb-3">
-                    <label  className="col-sm-2 col-form-label"><h5>Description</h5></label>
+                <div className="input-group input-group-sm mb-3">
+                    <label  className="input-group-text" id="inputGroup-sizing-sm"><h5>Description</h5></label>
                     <div className="col-sm-10">
-                        <input name="description" className="form-control" id="inputPassword3" placeholder="Add description" onChange={(e) => setTaskDescription(e.target.value)}/>
+                        <input name="description"type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="inputPassword3" placeholder="Add description" onChange={(e) => setTaskDescription(e.target.value)}/>
                     </div>
                 </div>
-                <div className="row mb-3">
-                    <label htmlFor="inputPassword3" className="col-sm-2 col-form-label"><h5>Priority</h5></label>
+                <div className="input-group input-group-sm mb-3">
+                    <label htmlFor="inputPassword3" className="input-group-text" id="inputGroup-sizing-sm"><h5>Priority</h5></label>
                     <div className="col-sm-10">
                         <select value={taskPriority} className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={(e) => setTaskPriority(e.target.value)}>
                             <option value="1">1</option>
@@ -53,10 +53,10 @@ function CreateTask(props) {
                         </select>
                     </div>
                 </div>
-                <div className="row mb-3">
-                    <label htmlFor="inputPassword3" className="col-sm-2 col-form-label"><h5>Status</h5></label>
+                <div className="input-group input-group-sm mb-3">
+                    <label htmlFor="inputPassword3" className="input-group-text" id="inputGroup-sizing-sm"><h5>Status</h5></label>
                     <div className="col-sm-10">
-                        <select value={taskStatus} name="status" className="form-select" aria-label="Default select example" onChange={(e) => setTaskStatus(e.target.value)}>
+                        <select value={taskStatus} name="status" className="input-group-text" id="inputGroup-sizing-sm" aria-label="Default select example" onChange={(e) => setTaskStatus(e.target.value)}>
                             <option value="to do">Todo</option>
                             <option value="progress">Progress</option>
                             <option value="review">Review</option>
@@ -65,10 +65,10 @@ function CreateTask(props) {
                     </div>
                 </div>
                 <Link to ="/" >
-                    <button className="btn btn-outline-primary" onClick={addToList}>Save</button>
+                    <button className="btn btn-light" onClick={addToList}>Save</button>
                 </Link>
                 <Link to ="/" >
-                    <button className="btn btn-outline-primary">Cancel</button>
+                    <button className="btn btn-light">Cancel</button>
                 </Link>
             </form>
         </div>

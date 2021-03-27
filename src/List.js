@@ -69,8 +69,12 @@ function List(props) {
     };
 
     return (
+
         <div className="container">
-            <center><h1>Kanban</h1></center>
+            <h1 className='header'>
+                Planner
+                <p className="fst-italic"> 12 Months of weekly & monthly calendars </p>
+            </h1>
             <hr/>
             <div className="row align-items-start">
                 {statuses.map(el =>

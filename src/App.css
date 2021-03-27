@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.header {
+  text-align: center;
+  height: 20vmin;
+  background-color: lightpink;
+  background-size: 20vmin;
+  color: indigo;
+  }
 .App-logo {
   height: 40vmin;
   pointer-events: none;
